@@ -1,12 +1,39 @@
+/*
+ * Simple hash program that was created for a DSA assigment.
+ * The Hash is based on Linear probing and its made just for
+ * storing numbers. Hash is also resizable. It takes in account
+ * number of filled and empty slots. Based on this it makes
+ * decision to resize.
+ */
+
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+
+/*
+ * Basic global variables
+ * size_of_array - this variable specifies the size of hash
+ * lambda - is the value on which program makes its decision to resize
+ * number_of_inserts is just for counting of inserted variables
+ */
 int size_of_array;
 double lambda;
 int number_of_inserted = 0;
 
+
+
+
 int Insert_F(int *ptr, int value);
 
+
+/*
+ * Simple hash function that return a key for given value
+ * - argument-  is a number which we will be transforming into key
+ * - return value- is a key
+ */
 int Hash_f(int value)
 {
     int result;
@@ -14,6 +41,12 @@ int Hash_f(int value)
     return result;
 
 }
+
+/*
+ * Function for resizing main array of slots for hash table
+ * It creates a new array and then maps every hashed number again onto bigger
+ * table
+ */
 
 int* Resize_array(int *ptr)
 {
@@ -34,6 +67,11 @@ int* Resize_array(int *ptr)
     return new_ptr;
 }
 
+/*
+ * This function inserts number into right place based on key
+ * It also solves collisions by linear probing.
+ * 
+ */
 int Insert_F(int *ptr, int value)
 {
     int index;
@@ -55,6 +93,11 @@ int Insert_F(int *ptr, int value)
     return 0;
 
 }
+/*
+ * Basic driver of the program.
+ * Every addition it checks if lambda is not higher than certain number
+ *
+ */
 int main()
 {
    int *ptr;
